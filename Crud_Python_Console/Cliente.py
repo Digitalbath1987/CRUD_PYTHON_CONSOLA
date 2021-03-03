@@ -50,3 +50,31 @@ class Cliente:
             print("Error en Coneccion")
         finally:
             Conn.close()
+
+        #Conexion a SQL Server EDIT
+    def EDIT(NOMBRE,RUT,TELEFONO_1,TELEFONO_2,ID_CIUDAD,DIRECCION,EMAIL,ID_COMERCIAL,ESTADO,NOMBRE_CONTACTO,COD_POSTAL,GIRO,ID_CLIENTE):
+        try:
+            Conn    = Cliente.Conn()
+            Cursor  = Conn.cursor();
+            Query   = ('UPDATE CLIENTE SET NOMBRE=?,RUT=?,TELEFONO_1=?,TELEFONO_2=?,ID_CIUDAD=?,DIRECCION=?,EMAIL=?,ID_COMERCIAL=?,ESTADO=?,NOMBRE_CONTACTO=?,COD_POSTAL=?,GIRO=? WHERE ID_CLIENTE=?')                  
+            Cursor.execute(Query,[NOMBRE,RUT,TELEFONO_1,TELEFONO_2,ID_CIUDAD,DIRECCION,EMAIL,ID_COMERCIAL,ESTADO,NOMBRE_CONTACTO,COD_POSTAL,GIRO,ID_CLIENTE])
+            Cursor.commit()
+            print("REGISTRO ACTUALIZADO CORRECTAMENTE")
+        except():
+            print("Error en Coneccion")
+        finally:
+            Conn.close()
+
+        #Conexion a SQL Server ELIMINAR
+    def DELETE(ID_CLIENTE):
+        try:
+            Conn    = Cliente.Conn()
+            Cursor  = Conn.cursor();
+            Query   = ('DELETE FROM CLIENTE WHERE ID_CLIENTE=?')                  
+            Cursor.execute(Query,[ID_CLIENTE])
+            Cursor.commit()
+            print("REGISTRO ELIMINADO CORRECTAMENTE")
+        except():
+            print("Error en Coneccion")
+        finally:
+            Conn.close()
